@@ -1,26 +1,39 @@
-import express from 'express'
-import 'dotenv/config';
-import cors from 'cors';
-import connectDB from './configs/db.js';
-import { clerkMiddleware } from '@clerk/express'
-import clerkWebhooks from './controllers/clerkWebhooks.js';
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
+dotenv.config();
 
 
-connectDB() 
+import connectDB from "./configs/db.js";
+import authRoutes from "./routes/authRoutes.js";
+import roomRoutes from "./routes/roomRoutes.js";
+import bookingRoutes from "./routes/bookingRoutes.js";
 
-const app= express()
-app.use(cors())
 
-// #middle ware
-app.use(express.json())
-app.use(clerkMiddleware())
+connectDB();
 
-// API to listen to Clerk Webhooks
-app.use("/api/clerk" , clerkWebhooks);
+const app = express();
 
-app.get('/' , (req , res)=> res.send('API is working'))
+app.use(cors());
+app.use(express.json());
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+console.log(__filename);
+console.log(__dirname);
+
+console.log("EMAIL_USER:", process.env.EMAIL_USER);
+console.log("EMAIL_PASS:", process.env.EMAIL_PASS);
+
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/rooms', roomRoutes);
+app.use('/api/bookings', bookingRoutes);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+app.get("/", (req, res) => res.send("API running"));
 
 const PORT = process.env.PORT || 3000;
-
-app.listen(PORT , ()=>console.log(`Server running on port ${PORT}`));
-
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

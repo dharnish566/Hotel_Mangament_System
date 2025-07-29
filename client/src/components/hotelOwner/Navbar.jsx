@@ -1,20 +1,30 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { assets } from '../../assets/assets'
-import { UserButton } from '@clerk/clerk-react'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { assets } from '../../assets/assets';
+import { useAuth } from '../../context/AuthContext'; // adjust the path as needed
 
 const Navbar = () => {
+  const { user } = useAuth(); // Admin user always available
+
   return (
-    <div className='flex items-center justify-between px-4 md:px-8 border-b border-gray-300 py-3 bg-white transition-all duration- 300'>
+    <div className='flex items-center justify-between px-4 md:px-8 border-b border-gray-300 py-3 bg-white transition-all duration-300'>
       
+      {/* Logo */}
       <Link to='/'>
-        <img src={assets.logo} alt="logo" className='h-9 invert opacity-80'/>
-      </Link> 
+        <img src={assets.logo} alt="logo" className='h-9 invert opacity-80' />
+      </Link>
 
-        <UserButton />
-
+      {/* Admin Profile Info */}
+      <div className='flex items-center gap-3'>
+        <img
+          src={user?.photo || assets.defaultAvatar}
+          alt="Admin Avatar"
+          className='w-9 h-9 rounded-full object-cover border border-gray-300'
+        />
+        <span className='text-sm text-gray-700'>{user?.name || 'Admin'}</span>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

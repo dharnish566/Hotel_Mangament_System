@@ -4,12 +4,13 @@ import StarRating from './StarRating'
 import Title from './Title'
 
 const Testimonial = () => {
-  return (
-    <div className='flex flex-col items-center px-6 md:px-16 lg:px-24 bg-slate-50 pt-20 pb-30'>
-      <Title title="What Our Guests Say" subTitle="Discover why discerning travelers consistency
+    return (
+        <div id="experience"
+        className='flex flex-col items-center px-6 md:px-16 lg:px-24 bg-slate-50 pt-20'>
+            <Title title="What Our Guests Say" subTitle="Discover why discerning travelers consistency
       choose QuickStay for their exclusive and luxurious accommodations around the world." />
 
-<div className="flex flex-wrap items-center gap-6 mt-20">
+            <div className="flex flex-wrap items-center gap-6 mt-20">
                 {testimonials.map((testimonial) => (
                     <div key={testimonial.id} className="bg-white p-6 rounded-xl shadow ">
                         <div className="flex items-center gap-3">
@@ -20,14 +21,14 @@ const Testimonial = () => {
                             </div>
                         </div>
                         <div className="flex items-center gap-1 mt-4">
-                            <StarRating/>
+                            <StarRating />
                         </div>
                         <p className="text-gray-500 max-w-90 mt-4">"{testimonial.review}"</p>
                     </div>
                 ))}
             </div>
-    </div>
-  )
+        </div>
+    )
 }
 
 export default Testimonial

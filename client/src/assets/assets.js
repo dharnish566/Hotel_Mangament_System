@@ -37,6 +37,7 @@ import listIcon from "./listIcon.svg";
 import uploadArea from "./uploadArea.svg";
 import totalBookingIcon from "./totalBookingIcon.svg";
 import totalRevenueIcon from "./totalRevenueIcon.svg";
+import descriptionIcon from "./descript.svg"
 
 
 export const assets = {
@@ -72,6 +73,7 @@ export const assets = {
     uploadArea,
     totalBookingIcon,
     totalRevenueIcon,
+    descriptionIcon
 }
 
 export const cities = [
@@ -142,6 +144,42 @@ export const hotelDummyData = {
 
 // Rooms Dummy Data
 export const roomsDummyData = [
+    {
+        "_id": "67f7647c197ac559e4089b96",
+        "hotel": hotelDummyData,
+        "roomType": "Double Bed",
+        "pricePerNight": 399,
+        "amenities": ["Room Service", "Mountain View", "Pool Access"],
+        "images": [roomImg1, roomImg2, roomImg3, roomImg4],
+        "isAvailable": true,
+        "createdAt": "2025-04-10T06:26:04.013Z",
+        "updatedAt": "2025-04-10T06:26:04.013Z",
+        "__v": 0
+    },
+    {
+        "_id": "67f7647c197ac559e4089b96",
+        "hotel": hotelDummyData,
+        "roomType": "Double Bed",
+        "pricePerNight": 399,
+        "amenities": ["Room Service", "Mountain View", "Pool Access"],
+        "images": [roomImg1, roomImg2, roomImg3, roomImg4],
+        "isAvailable": true,
+        "createdAt": "2025-04-10T06:26:04.013Z",
+        "updatedAt": "2025-04-10T06:26:04.013Z",
+        "__v": 0
+    },
+    {
+        "_id": "67f7647c197ac559e4089b96",
+        "hotel": hotelDummyData,
+        "roomType": "Double Bed",
+        "pricePerNight": 399,
+        "amenities": ["Room Service", "Mountain View", "Pool Access"],
+        "images": [roomImg1, roomImg2, roomImg3, roomImg4],
+        "isAvailable": true,
+        "createdAt": "2025-04-10T06:26:04.013Z",
+        "updatedAt": "2025-04-10T06:26:04.013Z",
+        "__v": 0
+    },
     {
         "_id": "67f7647c197ac559e4089b96",
         "hotel": hotelDummyData,
