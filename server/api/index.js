@@ -20,14 +20,14 @@ app.use(express.json());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-console.log("EMAIL_USER:", process.env.EMAIL_USER);
-console.log("EMAIL_PASS:", process.env.EMAIL_PASS);
+// console.log("EMAIL_USER:", process.env.EMAIL_USER);
+// console.log("EMAIL_PASS:", process.env.EMAIL_PASS);
 
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/rooms", roomRoutes);
 app.use("/api/bookings", bookingRoutes);
-app.use("/uploads", express.static(path.resolve(__dirname, "../public")));
+app.use("/uploads", express.static(path.resolve(__dirname, "../public/uploads")));
 
 app.get("/", (req, res) => res.send("API running"));
 
