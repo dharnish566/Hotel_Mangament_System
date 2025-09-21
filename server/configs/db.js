@@ -1,9 +1,10 @@
+// configs/db.js
 import mongoose from "mongoose";
 
-let cached = global.mongoose; // use global to cache connection
+let cached = globalThis.mongoose; // use globalThis for serverless
 
 if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
+  cached = globalThis.mongoose = { conn: null, promise: null };
 }
 
 async function connectDB() {
