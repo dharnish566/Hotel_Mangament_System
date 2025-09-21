@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
+import serverless from "serverless-http"; // ✅ import serverless-http
 dotenv.config();
 
 import connectDB from "../configs/db.js";
@@ -20,21 +21,21 @@ app.use(express.json());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// console.log("EMAIL_USER:", process.env.EMAIL_USER);
-// console.log("EMAIL_PASS:", process.env.EMAIL_PASS);
-
 // Routes
-app.use("/api/auth", authRoutes);
-app.use("/api/rooms", roomRoutes);
-app.use("/api/bookings", bookingRoutes);
-app.use("/uploads", express.static(path.resolve(__dirname, "../public/uploads")));
+// app.use("/api/auth", authRoutes);
+// app.use("/api/rooms", roomRoutes);
+// app.use("/api/bookings", bookingRoutes);
+// app.use("/uploads", express.static(path.resolve(__dirname, "../public/uploads")));
 
 app.get("/", (req, res) => res.send("API running"));
 
-// ✅ Export the app instead of app.listen()
+// ✅ Export the app for serverless
 export default app;
 
-// ✅ Run locally only (when not on Vercel)
+// ✅ Export handler for Vercel
+export const handler = serverless(app);
+
+// ✅ Optional: run locally when not in production
 if (process.env.NODE_ENV !== "production") {
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () =>
