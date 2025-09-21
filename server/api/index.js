@@ -27,7 +27,7 @@ console.log("EMAIL_PASS:", process.env.EMAIL_PASS);
 app.use("/api/auth", authRoutes);
 app.use("/api/rooms", roomRoutes);
 app.use("/api/bookings", bookingRoutes);
-app.use("/uploads", express.static(path.resolve(__dirname, "../uploads")));
+app.use("/uploads", express.static(path.resolve(__dirname, "../public")));
 
 app.get("/", (req, res) => res.send("API running"));
 
