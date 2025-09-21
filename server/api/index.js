@@ -14,7 +14,7 @@ connectDB();
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 const __filename = fileURLToPath(import.meta.url);
@@ -27,9 +27,17 @@ console.log("EMAIL_PASS:", process.env.EMAIL_PASS);
 app.use("/api/auth", authRoutes);
 app.use("/api/rooms", roomRoutes);
 app.use("/api/bookings", bookingRoutes);
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/uploads", express.static(path.resolve(__dirname, "../uploads")));
 
 app.get("/", (req, res) => res.send("API running"));
 
 // ✅ Export the app instead of app.listen()
 export default app;
+
+// ✅ Run locally only (when not on Vercel)
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () =>
+    console.log(`Server running locally on http://localhost:${PORT}`)
+  );
+}
