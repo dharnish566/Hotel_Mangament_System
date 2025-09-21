@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import DialogConfirm from '../components/DIalogConfirm';
+import DialogConfirm from '../components/DialogConfirm';
 import { Blinds } from 'lucide-react';
 import { toast } from 'react-toastify';
 
