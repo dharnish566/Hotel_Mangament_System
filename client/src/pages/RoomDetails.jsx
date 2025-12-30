@@ -24,7 +24,7 @@ const RoomDetails = () => {
         const amenities = Object.keys(roomData.amenities || {}).filter(key => roomData.amenities[key]);
 
         setRoom({ ...roomData, amenities });
-        if (roomData.image) setMainImage(`${import.meta.env.VITE_BACKEND_URL}/uploads/${roomData.image}`);
+        if (roomData.image) setMainImage(`${roomData.image}`);
       } catch (err) {
         console.error('Error fetching room:', err);
       }
@@ -86,7 +86,7 @@ const RoomDetails = () => {
         </div>
         <div className='grid grid-cols-2 gap-4  lg:w-1/2 w-full'>
           {room.images?.length > 1 && room.images.map((img, index) => {
-            const imgPath = `${import.meta.env.VITE_BACKEND_URL}/uploads/${img}`;
+            const imgPath = `${img}`;
             return (
               <img key={index}
                 onClick={() => setMainImage(imgPath)}
@@ -158,7 +158,7 @@ const RoomDetails = () => {
       {room.host && (
         <div className='flex flex-col items-start gap-4'>
           <div className='flex gap-4'>
-            <img src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${room.host.image}`} alt="Host" className='h-14 w-14 md:h-18 md:w-18 rounded-full' />
+            <img src={`${room.host.image}`} alt="Host" className='h-14 w-14 md:h-18 md:w-18 rounded-full' />
             <div>
               <p className='text-lg md:text-xl'>Hosted By {room.host.name}</p>
               <div className='flex items-center mt-1'>

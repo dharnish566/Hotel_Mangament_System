@@ -58,7 +58,7 @@ const BookingSummary = () => {
   };
 
   const imageUrl = room.image
-    ? `${import.meta.env.VITE_BACKEND_URL}/uploads/${room.image}`
+    ? `${room.image}`
     : '/fallback.jpg';
 
   const handleConfirmBooking = async () => {

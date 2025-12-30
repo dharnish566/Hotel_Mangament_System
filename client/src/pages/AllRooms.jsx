@@ -154,7 +154,7 @@ const AllRooms = () => {
                       navigate(`/rooms/${room._id}`);
                       scrollTo(0, 0);
                     }}
-                    src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${room.image}`}
+                    src={room.image}
                     alt="hotel-img"
                     className="max-h-65 md:w-1/2 rounded-xl-l shadow-lg object-cover cursor-pointer"
                   />

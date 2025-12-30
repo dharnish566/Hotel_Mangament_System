@@ -168,7 +168,7 @@ const MyBookings = () => {
                 <img
                   src={
                     booking.room?.image
-                      ? `${import.meta.env.VITE_BACKEND_URL}/uploads/${booking.room.image}`
+                      ? `${booking.room.image}`
                       : '/fallback.jpg'
                   }
                   alt="hotel-img"

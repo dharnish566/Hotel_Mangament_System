@@ -13,7 +13,7 @@ const Hotelcard = ({ room, index }) => {
         className='relative max-w-70 w-full rounded-xl overflow-hidden bg-white text-gray-500/90
       shadow-[0px_4px_4px_rgba(0,0,0,0.05)]'>
 
-        <img src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${room.image}`}
+        <img src={room.image}
           alt="room" className='w-full  object-cover' />
 
         {/* {index % 2 === 0 && (

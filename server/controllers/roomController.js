@@ -13,8 +13,9 @@ export const createRoom = async (req, res) => {
       maxGuests: Number(req.body.maxGuests),
       location: req.body.location,
       amenities: JSON.parse(req.body.amenities),
-      image: req.file ? req.file.filename : null
+      image: req.file ? req.file.path : null
     };
+    console.log(req.file.path);
 
     const newRoom = new Room(roomData);
     await newRoom.save();
@@ -30,6 +31,7 @@ export const getAllRooms = async (req, res) => {
   try {
     const rooms = await Room.find();
     res.status(200).json(rooms);
+    console.log("rooms: ", rooms);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

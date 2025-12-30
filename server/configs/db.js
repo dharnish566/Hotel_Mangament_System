@@ -1,27 +1,36 @@
 // configs/db.js
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 
-let cached = globalThis.mongoose; // use globalThis for serverless
+// Load environment variables (important for db.js to get MONGODB_URI)
+dotenv.config({ path: '../.env' });
 
-if (!cached) {
-  cached = globalThis.mongoose = { conn: null, promise: null };
-}
+let cached = globalThis.mongoose || { conn: null, promise: null };
+globalThis.mongoose = cached;
 
-async function connectDB() {
-  if (cached.conn) return cached.conn;
-
-  if (!cached.promise) {
-    const opts = {
-      bufferCommands: false,
-    };
-
-    cached.promise = mongoose.connect(process.env.MONGODB_URI, opts).then((mongoose) => {
-      return mongoose;
-    });
+const connectDB = async () => {
+  if (cached.conn) {
+    console.log("DB already connected ✔");
+    return cached.conn;
   }
 
-  cached.conn = await cached.promise;
-  return cached.conn;
-}
+  try {
+    console.log("DB Connecting to:", process.env.MONGODB_URI); // Debug log
+
+    cached.promise =
+      cached.promise ||
+      mongoose.connect(process.env.MONGODB_URI, {
+        bufferCommands: false,
+      });
+
+    cached.conn = await cached.promise;
+
+    console.log("MongoDB Connected Successfully 🚀");
+    return cached.conn;
+  } catch (error) {
+    console.error("❌ MongoDB Connection Error:", error.message);
+    process.exit(1);
+  }
+};
 
 export default connectDB;

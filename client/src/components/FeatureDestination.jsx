@@ -22,7 +22,7 @@ const FeatureDestination = () => {
         subTitle='Discover our handpicked selection of exceptional properties around the world, offering unparalleled luxury and unforgettable experiences.'
       />
       {<div className='flex items-center justify-center gap-6 mt-20 flex-wrap'>
-        {rooms.slice(0, 4).map((room, index) => (
+        {rooms.slice(0, 3).map((room, index) => (
           <Hotelcard key={room._id} room={room} index={index} />
         ))}
       </div>}
