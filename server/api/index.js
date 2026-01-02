@@ -25,7 +25,7 @@ app.use(express.json());
 
 // IMPORTANT: NO /api prefix here
 app.use("/auth", authRoutes);
-app.use("/rooms", roomRoutes);
+app.use("/api/rooms", roomRoutes);
 app.use("/bookings", bookingRoutes);
 
 // Health check
