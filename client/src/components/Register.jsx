@@ -63,7 +63,7 @@ const Register = () => {
         console.log("Entering..")
 
         try {
-            const response = await axios.post("http://localhost:3000/api/auth/register", {
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/register`, {
                 ...formData,
                 role,
                 isGoogleUser: location.state?.isGoogleUser || false,

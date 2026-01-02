@@ -10,7 +10,7 @@ const FeatureDestination = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/rooms")
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/rooms`)
       .then(res => setRooms(res.data))
       .catch(err => console.error("Failed to fetch rooms:", err));
   }, []);

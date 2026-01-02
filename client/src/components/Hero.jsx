@@ -36,7 +36,7 @@ const Hero = ({ setRecommendedRooms }) => {
 
         try {
             const response = await fetch(
-                `http://localhost:3000/api/rooms/available?destination=${destination}&checkIn=${checkIn}&checkOut=${checkOut}`
+                `${import.meta.env.VITE_BACKEND_URL}/api/rooms/available?destination=${destination}&checkIn=${checkIn}&checkOut=${checkOut}`
             );
             const data = await response.json();
 
