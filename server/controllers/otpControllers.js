@@ -1,7 +1,6 @@
+import bcrypt from "bcryptjs";
 import User from "../models/User.js";
 import { sendOTPEmail } from "../utils/sendEmail.js";
-import bcrypt from "bcryptjs";
-import crypto from "crypto";
 
 
 export const requestPasswordReset = async (req, res) => {
