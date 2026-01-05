@@ -41,7 +41,7 @@ export const getVisibleRooms = async (req, res) => {
   try {
     const visibleRooms = await Room.find({ isVisible: true });
     res.status(200).json(visibleRooms);
-  } catch (err) {
+  } catch (err) {    
     res.status(500).json({ error: err.message });
   }
 }

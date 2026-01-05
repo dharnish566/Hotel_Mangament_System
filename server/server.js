@@ -6,12 +6,12 @@ import { fileURLToPath } from "url";
 dotenv.config();
 
 import connectDB from "./configs/db.js";
-// import authRoutes from "./routes/authRoutes.js";
-// import roomRoutes from "./routes/roomRoutes.js";
-// import bookingRoutes from "./routes/bookingRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+import roomRoutes from "./routes/roomRoutes.js";
+import bookingRoutes from "./routes/bookingRoutes.js";
 
 
-// console.log("ENV - ",process.env.PORT)
+console.log("ENV - ",process.env.PORT)
 
 connectDB();
 
@@ -29,10 +29,10 @@ console.log("EMAIL_USER:", process.env.EMAIL_USER);
 console.log("EMAIL_PASS:", process.env.EMAIL_PASS);
 
 // // Routes
-// app.use('/api/auth', authRoutes);
-// app.use('/api/rooms', roomRoutes);
-// app.use('/api/bookings', bookingRoutes);
-// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/api/auth', authRoutes);
+app.use('/api/rooms', roomRoutes);
+app.use('/api/bookings', bookingRoutes);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.get("/", (req, res) => res.send("API running......."));
 

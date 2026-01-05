@@ -1,40 +1,40 @@
-// api/index.js
 import express from "express";
-import dotenv from "dotenv";
 import cors from "cors";
-import serverless from "serverless-http";
+import dotenv from "dotenv";
 
-// Load environment variables
-dotenv.config();
-
-// DB connection
 import connectDB from "../configs/db.js";
-
-// Routes
 import authRoutes from "../routes/authRoutes.js";
 import roomRoutes from "../routes/roomRoutes.js";
 import bookingRoutes from "../routes/bookingRoutes.js";
 
-// Connect to MongoDB
-connectDB();
+dotenv.config();
 
 const app = express();
 
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 
-// IMPORTANT: NO /api prefix here
+// Ensure DB connection per request (cached)
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    console.error("DB Error:", error.message);
+    res.status(500).json({ message: "Database connection failed" });
+  }
+});
+
 app.use("/auth", authRoutes);
-app.use("/api/rooms", roomRoutes);
+app.use("/rooms", roomRoutes);
 app.use("/bookings", bookingRoutes);
 
-// Health check
 app.get("/", (req, res) => {
   res.send("API running on Vercel 🚀");
 });
 
+export default app;
 
-export const handler = serverless(app);
 
 
 

@@ -48,6 +48,7 @@ const AllRooms = () => {
         setFilteredRooms(res.data);
       })
       .catch((err) => {
+        console.log(import.meta.env.VITE_BACKEND_URL);
         console.error('Failed to fetch rooms:', err);
       })
       .finally(() => {
